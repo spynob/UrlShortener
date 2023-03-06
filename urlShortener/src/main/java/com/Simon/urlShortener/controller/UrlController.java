@@ -35,7 +35,7 @@ public class UrlController {
     //returns shortened url and adds it to the database
     //@pre url is not already in database and is not null
     private String convertToShort(String pLongUrl) throws MalformedURLException, URISyntaxException {
-        return aUrlService.createShortUrl(pLongUrl);
+        return aUrlService.convertToShort(pLongUrl);
     }
 
     //redirects user to the original page when short url is appended to path

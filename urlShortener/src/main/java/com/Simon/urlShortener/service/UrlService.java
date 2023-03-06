@@ -55,7 +55,7 @@ public class UrlService {
     //creates the shortened url and adds it to the database if not present yet
     //handles collisions: if two urls have the same hashcode, will try new urls until the url
     // is unique in the database
-    public String createShortUrl(String pLongUrl) {
+    public String convertToShort(String pLongUrl) {
         int hash = pLongUrl.hashCode();
         if (hash < 0){
             hash = hash * -1;
