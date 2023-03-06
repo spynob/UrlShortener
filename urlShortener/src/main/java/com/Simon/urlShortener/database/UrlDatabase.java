@@ -8,7 +8,7 @@ import java.util.*;
 @Repository("Database")
 public class UrlDatabase {
 
-    private final Map<String, String> DB = new HashMap<>();
+    private final Map<String, String> DB = new HashMap<>(); //base de données temporaire
 
     public boolean contains(String pUrl){
         return DB.containsKey(pUrl);

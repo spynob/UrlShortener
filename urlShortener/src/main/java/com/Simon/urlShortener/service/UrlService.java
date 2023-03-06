@@ -9,8 +9,6 @@ import org.springframework.stereotype.Service;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.util.Base64;
-import java.util.List;
 
 @Service
 public class UrlService {

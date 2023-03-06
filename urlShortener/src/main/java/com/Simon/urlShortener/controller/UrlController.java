@@ -1,11 +1,9 @@
 package com.Simon.urlShortener.controller;
 
-import com.Simon.urlShortener.model.Url;
 import com.Simon.urlShortener.service.UrlService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -14,7 +12,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 
-//@RequestMapping("/UrlShortener")
+
 @RestController
 public class UrlController {
 

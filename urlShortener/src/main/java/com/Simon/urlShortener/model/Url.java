@@ -1,10 +1,6 @@
 package com.Simon.urlShortener.model;
 
-import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.UUID;
-
-public class Url {
+public class Url { //pas trop sur quoi faire avec cette classe encore
     private final String aShortUrl;
     private final String aLongUrl;
 
