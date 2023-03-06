@@ -26,9 +26,9 @@ public class UrlController {
     //Original url -> checks if valid url (throws 400 bad request if not) and outputs shortened url (will check if already in database)
     //shortened url present in database -> outputs the original url
     @PostMapping("/UrlShortener")
-    public String dispatch(@RequestParam(value = "URL") String pUrl) throws MalformedURLException, URISyntaxException {
+    public String handler(@RequestParam(value = "URL") String pUrl) throws MalformedURLException, URISyntaxException {
         if(aUrlService.checkIfGenerated(pUrl)){return aUrlService.getLongUrl(pUrl);}
-        if(!aUrlService.isValidURL(pUrl)){throw new ResponseStatusException(HttpStatus.BAD_REQUEST);}
+        if(!aUrlService.isValidUrl(pUrl)){throw new ResponseStatusException(HttpStatus.BAD_REQUEST);}
         return convertToShort(pUrl);
     }
 

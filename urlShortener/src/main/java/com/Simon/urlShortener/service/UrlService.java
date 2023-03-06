@@ -18,7 +18,7 @@ public class UrlService {
     private UrlRepository repository;
 
     //not the prettiest, but fast
-    public final char[] base62 = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y','z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K' ,'L' ,'M', 'N' ,'O', 'P' ,'Q', 'R' , 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
+    private final char[] base62 = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y','z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K' ,'L' ,'M', 'N' ,'O', 'P' ,'Q', 'R' , 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
 
     @Autowired
     public UrlService(@Qualifier("Database") UrlRepository pUrlDatabase) {
@@ -27,7 +27,7 @@ public class UrlService {
     }
 
     //adds url object to database
-    private void addURL(Url pUrl){
+    private void addUrl(Url pUrl){
         repository.insert(pUrl);
     }
 
@@ -37,7 +37,7 @@ public class UrlService {
     }
 
     //Checks if url is valid
-    public boolean isValidURL(String url) throws MalformedURLException, URISyntaxException {
+    public boolean isValidUrl(String url) throws MalformedURLException, URISyntaxException {
         try {
             new URL(url).toURI();
             return true;
@@ -62,8 +62,8 @@ public class UrlService {
         }
         String shortUrl = toBase62(hash);
         if(!checkIfGenerated(shortUrl)){
-            addURL(new Url(pLongUrl, shortUrl));
-        } else if (repository.findById(shortUrl).get().getLongUrl() != pLongUrl) {
+            addUrl(new Url(pLongUrl, shortUrl));
+        } else if (!repository.findById(shortUrl).get().getLongUrl().equals(pLongUrl)) {
             int collisionHandler = 0;
             while (checkIfGenerated(shortUrl)){
                 shortUrl += base62[collisionHandler % 62];

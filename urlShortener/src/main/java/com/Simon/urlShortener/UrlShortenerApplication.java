@@ -9,6 +9,5 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 public class UrlShortenerApplication {
 
 	public static void main(String[] args) {
-		System.out.println("a"+1);
 		SpringApplication.run(UrlShortenerApplication.class, args);}
 }

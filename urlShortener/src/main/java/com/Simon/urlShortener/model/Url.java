@@ -10,10 +10,10 @@ public class Url {
     @Id
     private final String id;
 
-    private final String LongUrl;
+    private final String longUrl;
 
-    public Url(String LongUrl, String id) {
-        this.LongUrl = LongUrl;
+    public Url(String longUrl, String id) {
+        this.longUrl = longUrl;
         this.id = id;
 
     }
@@ -23,6 +23,6 @@ public class Url {
     }
 
     public String getLongUrl() {
-        return LongUrl;
+        return longUrl;
     }
 }
