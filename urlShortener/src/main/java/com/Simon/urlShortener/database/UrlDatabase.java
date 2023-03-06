@@ -10,9 +10,7 @@ public class UrlDatabase {
 
     private final Map<String, String> DB = new HashMap<>(); //base de données temporaire
 
-    public boolean contains(String pUrl){
-        return DB.containsKey(pUrl);
-    }
+    public boolean contains(String pUrl){return DB.containsKey(pUrl);}
 
     public int addURL(Url pUrl){
         DB.putIfAbsent(pUrl.getShortUrl(), pUrl.getLongUrl());

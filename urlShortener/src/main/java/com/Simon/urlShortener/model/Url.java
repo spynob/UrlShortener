@@ -1,6 +1,6 @@
 package com.Simon.urlShortener.model;
 
-public class Url { //pas trop sur quoi faire avec cette classe encore
+public class Url { //pas trop sur quoi faire avec cette classe encore par rapport à spring boot
     private final String aShortUrl;
     private final String aLongUrl;
 

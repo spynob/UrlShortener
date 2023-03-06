@@ -21,9 +21,7 @@ public class UrlService {
         aUrlDatabase = pUrlDatabase;
     }
 
-    private int addURL(Url pUrl){
-        return aUrlDatabase.addURL(pUrl);
-    }
+    private int addURL(Url pUrl){return aUrlDatabase.addURL(pUrl);}
 
     public boolean checkIfGenerated(String pUrl){
         return aUrlDatabase.contains(pUrl);

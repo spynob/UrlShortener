@@ -10,8 +10,6 @@ import org.springframework.web.server.ResponseStatusException;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.List;
-
 
 @RestController
 public class UrlController {
