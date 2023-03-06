@@ -5,7 +5,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
-public class Url { //pas trop sur quoi faire avec cette classe encore par rapport à spring boot
+public class Url {
 
     @Id
     private final String id;

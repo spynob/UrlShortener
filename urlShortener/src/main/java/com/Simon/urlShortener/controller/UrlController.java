@@ -22,18 +22,23 @@ public class UrlController {
         aUrlService = pUrlService;
     }
 
-
+    //handles the inputted url
+    //Original url -> checks if valid url (throws 400 bad request if not) and outputs shortened url (will check if already in database)
+    //shortened url present in database -> outputs the original url
     @PostMapping("/UrlShortener")
     public String dispatch(@RequestParam(value = "URL") String pUrl) throws MalformedURLException, URISyntaxException {
         if(aUrlService.checkIfGenerated(pUrl)){return aUrlService.getLongUrl(pUrl);}
-        if(!aUrlService.isValidURL(pUrl)){return "Invalid URL";}
+        if(!aUrlService.isValidURL(pUrl)){throw new ResponseStatusException(HttpStatus.BAD_REQUEST);}
         return convertToShort(pUrl);
     }
 
+    //returns shortened url and adds it to the database
+    //@pre url is not already in database and is not null
     private String convertToShort(String pLongUrl) throws MalformedURLException, URISyntaxException {
         return aUrlService.createShortUrl(pLongUrl);
     }
 
+    //redirects user to the original page when short url is appended to path
     @GetMapping(value = "{shortUrl}")
     public ResponseEntity<Void> redirect(@PathVariable String shortUrl){
         try {
