@@ -10,6 +10,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.NoSuchElementException;
 
 @RestController
 public class UrlController {
@@ -39,7 +40,7 @@ public class UrlController {
             return ResponseEntity.status(HttpStatus.FOUND)
                     .location(URI.create(aUrlService.getLongUrl(shortUrl)))
                     .build();
-        } catch (NullPointerException e){
+        } catch (NoSuchElementException e){
             System.out.println("1");
             throw new ResponseStatusException(
                     HttpStatus.NOT_FOUND, "Page not found"
