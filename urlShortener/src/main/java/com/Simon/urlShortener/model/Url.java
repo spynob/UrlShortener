@@ -8,18 +8,18 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Url { //pas trop sur quoi faire avec cette classe encore par rapport à spring boot
 
     @Id
-    private final String ShortUrl;
+    private final String id;
 
     private final String LongUrl;
 
-    public Url(String LongUrl,@Qualifier("_id") String ShortUrl) {
+    public Url(String LongUrl, String id) {
         this.LongUrl = LongUrl;
-        this.ShortUrl = ShortUrl;
+        this.id = id;
 
     }
 
     public String getShortUrl() {
-        return ShortUrl;
+        return id;
     }
 
     public String getLongUrl() {

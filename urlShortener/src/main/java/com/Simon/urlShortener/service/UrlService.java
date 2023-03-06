@@ -33,10 +33,6 @@ public class UrlService {
     }
 
     public boolean checkIfGenerated(String pUrl){
-        //Query query = new Query();
-        //query.addCriteria(Criteria.where("-id").is(pUrl));
-        //List<Url> list = mongoTemplate.find(query,Url.class);
-        //System.out.println(list);
         return repository.findById(pUrl).isPresent();
     }
 
@@ -60,7 +56,7 @@ public class UrlService {
             hash = hash * -1;
         }
         String shortUrl = toBase62(hash);
-        addURL(new Url(pLongUrl, shortUrl));
+        if(!checkIfGenerated(shortUrl)){addURL(new Url(pLongUrl, shortUrl));}
         return shortUrl;
     }
 
