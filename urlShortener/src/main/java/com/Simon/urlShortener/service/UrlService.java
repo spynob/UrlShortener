@@ -29,15 +29,18 @@ public class UrlService {
     //adds url object to database
     private void addUrl(Url pUrl){
         repository.insert(pUrl);
+        System.out.println("New url inserted in database");
     }
 
     //checks if short url is already in database
-    public boolean checkIfGenerated(String pUrl){
-        return repository.findById(pUrl).isPresent();
+    public boolean checkIfGenerated(String pShortUrl){
+        System.out.println("Checking if " + pShortUrl + " is in database as short url...");
+        return repository.findById(pShortUrl).isPresent();
     }
 
     //Checks if url is valid
     public boolean isValidUrl(String url) throws MalformedURLException, URISyntaxException {
+        System.out.println("Checking if " + url + " is valid...");
         try {
             new URL(url).toURI();
             return true;
@@ -48,6 +51,7 @@ public class UrlService {
 
     //retrieves the original url when shortened url is inputted
     public String getLongUrl(String pShortUrl){
+        System.out.println("Fetching long url corresponding to " + pShortUrl + "...");
         Optional<Url> url = repository.findById(pShortUrl);
         return url.get().getLongUrl();
     }
@@ -56,20 +60,24 @@ public class UrlService {
     //handles collisions: if two urls have the same hashcode, will try new urls until the url
     // is unique in the database
     public String convertToShort(String pLongUrl) {
+        System.out.println("Requesting short url for " + pLongUrl + "...");
         int hash = pLongUrl.hashCode();
         if (hash < 0){
             hash = hash * -1;
         }
         String shortUrl = toBase62(hash);
-        if(!checkIfGenerated(shortUrl)){
+        if (!checkIfGenerated(shortUrl)){
+            System.out.println("Creating new short url for " + pLongUrl + "...");
             addUrl(new Url(pLongUrl, shortUrl));
         } else if (!repository.findById(shortUrl).get().getLongUrl().equals(pLongUrl)) {
+            System.out.println("Collision encountered... Creating new short url");
             int collisionHandler = 0;
             while (checkIfGenerated(shortUrl)){
                 shortUrl += base62[collisionHandler % 62];
                 collisionHandler++;
             }
         }
+        System.out.println("Short url request successfully!\nLong url: " + pLongUrl + "\nShort url: " + shortUrl);
         return shortUrl;
     }
 
