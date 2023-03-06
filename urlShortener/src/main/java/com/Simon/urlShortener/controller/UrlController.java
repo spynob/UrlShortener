@@ -24,7 +24,7 @@ public class UrlController {
 
     @PostMapping("/UrlShortener")
     public String dispatch(@RequestParam(value = "URL") String pUrl) throws MalformedURLException, URISyntaxException {
-        if(aUrlService.checkIfGenerated(pUrl)){return aUrlService.getLongUrl(pUrl);}
+        if(aUrlService.checkIfGenerated(pUrl)){System.out.println("hello");return aUrlService.getLongUrl(pUrl);}
         if(!aUrlService.isValidURL(pUrl)){return "Invalid URL";}
         return convertToShort(pUrl);
     }
